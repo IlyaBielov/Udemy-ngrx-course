@@ -16,8 +16,9 @@ import {AuthModule} from './auth/auth.module';
 import {StoreModule} from '@ngrx/store';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {metaReducers, reducers} from './reducers';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
+import {MatButtonModule} from '@angular/material/button';
 
 const routes: Routes = [
   {
@@ -48,7 +49,8 @@ const routes: Routes = [
     MatToolbarModule,
     AuthModule.forRoot(),
     StoreModule.forRoot(reducers, {metaReducers}),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+    MatButtonModule
   ],
   bootstrap: [AppComponent]
 })
