@@ -20,6 +20,7 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {MatButtonModule} from '@angular/material/button';
 import {AuthGuard} from './auth/auth.guard';
+import {EffectsModule} from '@ngrx/effects';
 
 const routes: Routes = [
   {
@@ -49,10 +50,11 @@ const routes: Routes = [
     MatProgressSpinnerModule,
     MatListModule,
     MatToolbarModule,
+    MatButtonModule,
     AuthModule.forRoot(),
     StoreModule.forRoot(reducers, {metaReducers}),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    MatButtonModule
+    EffectsModule.forRoot([])
   ],
   bootstrap: [AppComponent]
 })
