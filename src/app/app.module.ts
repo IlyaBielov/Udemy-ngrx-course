@@ -21,6 +21,7 @@ import {environment} from '../environments/environment';
 import {MatButtonModule} from '@angular/material/button';
 import {AuthGuard} from './auth/auth.guard';
 import {EffectsModule} from '@ngrx/effects';
+import {RouterState, StoreRouterConnectingModule} from '@ngrx/router-store';
 
 const routes: Routes = [
   {
@@ -52,9 +53,21 @@ const routes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     AuthModule.forRoot(),
-    StoreModule.forRoot(reducers, {metaReducers}),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true,
+        strictActionSerializability: true,
+        strictStateSerializability: true,
+      }
+    }),
     StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([])
+    EffectsModule.forRoot([]),
+    StoreRouterConnectingModule.forRoot({
+      stateKey: 'router',
+      routerState: RouterState.Minimal
+    })
   ],
   bootstrap: [AppComponent]
 })
